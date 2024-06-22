@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         close() {
-           window.location.href = window.location.origin + '/results';
+            this.$router.replace({ path: '/results' });
         }
     }
 };

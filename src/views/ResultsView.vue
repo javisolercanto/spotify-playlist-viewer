@@ -47,7 +47,7 @@ export default {
     created() {
         const urlToken = window.location.hash.substring(1).split('&').find(elem => elem.startsWith('access_token'))
         if (!urlToken && !localStorage.getItem('access_token')) {
-            window.location.href = window.location.origin + '/';
+            this.$router.push({ path: '/', replace: true });
             return;
         }
 
@@ -55,7 +55,7 @@ export default {
     },
     methods: {
         goBack() {
-            window.location.href = window.location.origin + '/playlist';
+            this.$router.push({ path: '/playlist', replace: true });
         },
         async getTracks() {
             const accessToken = localStorage.getItem('access_token');
@@ -145,10 +145,10 @@ export default {
             this.hasVoted = !(error && error.code === 'PGRST116');
         },
         vote() {
-            window.location.href = window.location.origin + '/vote';
+            this.$router.push({ path: '/vote', replace: true });
         },
         results() {
-            window.location.href = window.location.origin + '/results';
+            this.$router.push({ path: '/results', replace: true });
         }
     },
 };

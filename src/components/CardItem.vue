@@ -5,12 +5,12 @@
     }" class="card" :style="{ transform: transformString }">
         <img :src="card.track.album.images[0]?.url" alt="Album Art" class="album-art" />
         <div class="cardInfo">
-            <h3 class="cardTitle">{{ card.track.name }}</h3>
+            <span class="cardTitle">{{ card.track.name }}</span>
             <p class="cardArtist">{{ card.track.artists.map(artist => artist.name).join(', ') }}</p>
         </div>
         <div class="audioControls">
             <audio ref="audio" :src="card.track.preview_url"></audio>
-            <button @click="playAudio">
+            <button class="play-button" @click="playAudio">
                 <span>{{ isPlaying ? '⏸️ Pause' : '▶️ Play' }}</span>
             </button>
         </div>
@@ -222,26 +222,33 @@ export default {
 @media (max-width: 600px) {
     .card {
         padding: 0.5rem;
-        width: 45vw;
-        height: 90vw;
+        width: 40vw;
+        height: 60vw;
     }
 
     .card .album-art {
-        width: 35vw;
+        width: 20vw;
         height: auto;
     }
 
     .card .cardTitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        font-weight: bold;
     }
 
     .card .cardArtist {
-        font-size: 0.9rem;
+        font-size: 0.5rem;
     }
 
     .card .audioControls span {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
         padding: 0;
+    }
+
+    .card .play-button {
+        padding: 0.25rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 
     .card .user-photo {
@@ -268,11 +275,10 @@ export default {
 
 .cardTitle {
     font-size: 1.25rem;
-    margin: 0.5rem 0;
 }
 
 .cardArtist {
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #b3b3b3;
 }
 
@@ -281,18 +287,16 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 0;
-    margin-top: 1rem;
 }
 
 .user-photo {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
 .user-name {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #b3b3b3;
 }
 
@@ -300,7 +304,6 @@ export default {
     width: 200px;
     height: 200px;
     border-radius: 10px;
-    margin-bottom: 1rem;
 }
 
 .card:nth-child(1) {
@@ -345,5 +348,10 @@ export default {
 .interaction-indicator.negative {
     left: 20px;
     color: #e0245e;
+}
+
+.play-button {
+    font-size: 0.8rem;
+    padding: 0.5rem 2rem 0.5rem 2rem;
 }
 </style>

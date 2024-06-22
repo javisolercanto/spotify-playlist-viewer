@@ -22,7 +22,7 @@ export default {
     },
     created() {
         if (new Date().getDay() != process.env.VUE_APP_VOTATION_DAY) {
-            return window.location.href = window.location.origin + '/results';
+            return this.$router.push({ path: '/results', replace: true });
         }
 
         const userId = JSON.parse(localStorage.getItem('user')).id;

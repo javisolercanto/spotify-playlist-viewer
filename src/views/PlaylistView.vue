@@ -66,7 +66,7 @@ export default {
 
         const urlToken = window.location.hash.substring(1).split('&').find(elem => elem.startsWith('access_token'))
         if (!urlToken && !localStorage.getItem('access_token')) {
-            window.location.href = window.location.origin + '/';
+            this.$router.back();
             return;
         }
 
@@ -122,7 +122,7 @@ export default {
                         console.error('Error al obtener la lista de reproducción:', data.error);
 
                         if (data.error.status === 401) {
-                            window.location.href = window.location.origin + '/';
+                            this.$router.push({ path: '/', replace: true });
                         }
 
                         return;
@@ -212,10 +212,10 @@ export default {
             this.hasVoted = !(error && error.code === 'PGRST116');
         },
         vote() {
-            window.location.href = window.location.origin + '/vote';
+            this.$router.push({ path: '/vote', replace: true });
         },
         results() {
-            window.location.href = window.location.origin + '/results';
+            this.$router.push({ path: '/results', replace: true });
         }
     },
 };

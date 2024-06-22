@@ -5,12 +5,20 @@
             <img src="../assets/logo.png" alt="Spotify Logo">
             <button @click="login">Login with Spotify</button>
         </div>
+
+        <span class="powered">Powered by Jei</span>
+        <span class="version">v{{ version }}</span>
     </div>
 </template>
 
 <script>
 export default {
     name: 'LoginView',
+    data() {
+        return {
+            version: process.env.VUE_APP_VERSION,
+        };
+    },
     methods: {
         login() {
             const clientId = process.env.VUE_APP_SPOTIFY_CLIENT_ID;
@@ -61,5 +69,18 @@ h1 {
 button {
     font-size: 1.2rem;
     padding: 10px 40px;
+}
+
+
+.powered {
+    font-size: 0.8rem;
+    color: #b3b3b3;
+    margin-top: 40px;
+}
+
+.version {
+    font-size: 0.7rem;
+    color: #b3b3b3;
+    margin-top: 10px;
 }
 </style>

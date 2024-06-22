@@ -5,7 +5,7 @@
     }" class="card" :style="{ transform: transformString }">
         <img :src="card.track.album.images[0]?.url" alt="Album Art" class="album-art" />
         <div class="cardInfo">
-            <span class="cardTitle">{{ card.track.name }}</span>
+            <span class="cardTitle">{{ card.track.name.length > 30 ? card.track.name.substring(0, 30) + '...' : card.track.name }}</span>
             <p class="cardArtist">{{ card.track.artists.map(artist => artist.name).join(', ') }}</p>
         </div>
         <div class="audioControls">
@@ -222,7 +222,7 @@ export default {
 @media (max-width: 600px) {
     .card {
         padding: 0.5rem;
-        width: 40vw;
+        width: 50vw;
         height: 60vw;
     }
 
@@ -237,7 +237,7 @@ export default {
     }
 
     .card .cardArtist {
-        font-size: 0.5rem;
+        font-size: 0.6rem;
     }
 
     .card .audioControls span {
@@ -246,7 +246,7 @@ export default {
     }
 
     .card .play-button {
-        padding: 0.25rem;
+        padding: 0.1rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
@@ -287,6 +287,8 @@ export default {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    margin-top: 10px;
 }
 
 .user-photo {
